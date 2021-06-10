@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         layout.addView(child, tv1Params)
 
 
-        val builder = AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert)
+        val builder = AlertDialog.Builder(this, R.style.Theme_AppCompat_Dialog_Alert)
         layout.removeAllViews()
         layout.addView(child, tv1Params)
         builder.setView(layout)
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
 
         builder.setPositiveButton(android.R.string.cancel) { dialog, which ->
         }
-        builder.setNeutralButton("POST") { dialog, which ->
+        builder.setNeutralButton("ADD NEW") { dialog, which ->
             CoroutineScope(Dispatchers.Main).launch {
                 viewModel.postListData(title.text.toString(), description.text.toString())
                     .observe(this@MainActivity, { response ->
