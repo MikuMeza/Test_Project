@@ -12,8 +12,8 @@ interface ListService {
     @POST
     @Headers("Content-Type: application/json; charset=UTF-8")
     suspend fun postListData(
-        @Url url: String = ListLink,@Query("title") title:String,@Query("desc") desc:String
-    ): Response<Boolean>
+        @Url url: String = ListLink,@Body param: String
+    ): Response<String>
 
     companion object {
         operator fun invoke(): ListService {

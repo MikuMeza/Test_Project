@@ -36,8 +36,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return listData
     }
 
-    suspend fun postListData(title: String,desc:String): MutableLiveData<NetworkResult<Boolean>> {
-        var listData = MutableLiveData<NetworkResult<Boolean>>()
+    suspend fun postListData(title: String,desc:String): MutableLiveData<NetworkResult<String>> {
+        var listData = MutableLiveData<NetworkResult<String>>()
 
         viewModelScope.launch {
             listData.value = NetworkResult.Loading()
@@ -45,7 +45,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 try {
                     val response = ListRepository().postListData(title, desc)
                     listData.value =
-                        NetworkResponse<Boolean>().handleNetworkResponse(response)
+                        NetworkResponse<String>().handleNetworkResponse(response)
 
 
                 } catch (e: Exception) {

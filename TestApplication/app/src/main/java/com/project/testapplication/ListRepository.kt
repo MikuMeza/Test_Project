@@ -1,5 +1,6 @@
 package com.project.testapplication
 
+import com.google.gson.Gson
 import retrofit2.Response
 
 class ListRepository {
@@ -7,7 +8,8 @@ class ListRepository {
         return ListService().getListData()
     }
 
-    suspend fun postListData(title:String,desc:String): Response<Boolean> {
-        return ListService().postListData(title = title,desc = desc)
+    suspend fun postListData(title:String,desc:String): Response<String> {
+        var postData=PostData(title, desc)
+        return ListService().postListData(param = Gson().toJson(postData))
     }
 }
